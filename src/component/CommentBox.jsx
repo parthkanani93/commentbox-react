@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { Button, Form, FormGroup, Label, Input, Media } from 'reactstrap';
 
 function CommentBox() {
 
@@ -6,48 +7,53 @@ function CommentBox() {
     const [comment, change] = useState('');
     const [name, changename] = useState('');
 
-    console.log(comments)
-
     return (
         <div>
+            <Form>
+                <FormGroup>  <Label>
+                    Name : <Input type="text" id="name" onChange={(e) => changename(e.target.value)} />
+                </Label></FormGroup>
 
-            <label>
-                Name : <input type="text" id="name" onChange={(e) => changename(e.target.value)} />
-            </label>
-            <label>
-                Comment : <input type="text" id="comment" onChange={(e) => change(e.target.value)} />
-            </label>
-            <button onClick={() => {
-                if (comment === '' || name === '') {
-                    return undefined;
+                <FormGroup><Label>
+                    Comment : <Input type="textarea" id="comment" onChange={(e) => change(e.target.value)} />
+                </Label></FormGroup>
+
+                <Button onClick={() => {
+                    if (comment === '' || name === '') {
+                        return undefined;
+                    }
+                    else {
+                        setlist([...comments, {
+                            id: comments.length,
+                            name: name,
+                            comment: comment
+                        }])
+                        change('');
+                        changename('');
+                    }
+                    document.getElementById("name").value = ""
+                    document.getElementById("comment").value = ""
+                }}>Comment</Button>
+
+
+                {
+                    comments.map((data) =>
+                        <Media>
+                            <Media left href="#">
+                                <Media object data-src="holder.js/64x64" alt="image" />
+                            </Media>
+
+                            <Media body>
+                                <Media heading>
+                                    {data.name}
+                                </Media>
+
+                                {data.comment}
+                            </Media>
+                        </Media>
+                    )
                 }
-                else {
-                    setlist([...comments, {
-                        id: comments.length,
-                        name: name,
-                        comment: comment
-                    }])
-                    change('');
-                    changename('');
-                }
-                document.getElementById("name").value = ""
-                document.getElementById("comment").value = ""
-            }}>Comment</button>
-
-
-            {
-                comments.map((data) =>
-                    <div key={data.id}>
-                        <div>
-                            {data.name}
-                        </div>
-                        <div>
-                            {data.comment}
-                        </div>
-                    </div>
-                )
-            }
-
+            </Form>
         </div>
     )
 }
