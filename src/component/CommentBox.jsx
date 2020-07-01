@@ -8,49 +8,62 @@ function CommentBox() {
     const [name, changename] = useState('');
 
     return (
-        <div>
+        <div className="container">
             <Form>
-                <FormGroup>  <Label>
-                    Name : <Input type="text" id="name" onChange={(e) => changename(e.target.value)} />
-                </Label></FormGroup>
+                <div className="container">
+                    <div>
+                        <FormGroup>  <Label>
+                            Name : <Input type="text" id="name" onChange={(e) => changename(e.target.value)} />
+                        </Label></FormGroup>
 
-                <FormGroup><Label>
-                    Comment : <Input type="textarea" id="comment" onChange={(e) => change(e.target.value)} />
-                </Label></FormGroup>
+                        <FormGroup><Label>
+                            Comment : <Input type="textarea" id="comment" onChange={(e) => change(e.target.value)} />
+                        </Label></FormGroup>
 
-                <Button onClick={() => {
-                    if (comment === '' || name === '') {
-                        return undefined;
-                    }
-                    else {
-                        setlist([...comments, {
-                            id: comments.length,
-                            name: name,
-                            comment: comment
-                        }])
-                        change('');
-                        changename('');
-                    }
-                    document.getElementById("name").value = ""
-                    document.getElementById("comment").value = ""
-                }}>Comment</Button>
+                        <Button onClick={() => {
+                            if (comment === '' || name === '') {
+                                return undefined;
+                            }
+                            else {
+                                setlist([...comments, {
+                                    id: comments.length,
+                                    name: name,
+                                    comment: comment
+                                }])
+                                change('');
+                                changename('');
+                            }
+                            document.getElementById("name").value = ""
+                            document.getElementById("comment").value = ""
+                        }}>Comment</Button>
+
+                    </div>
+
+                </div>
+
+
 
 
                 {
                     comments.map((data) =>
-                        <Media>
-                            <Media left href="#">
-                                <Media object data-src="holder.js/64x64" alt="image" />
-                            </Media>
+                        <div className="container" style={{ backgroundColor: "lightblue" }}>
+                            <div className="row d-flex justify-content-center">
+                                <div className="col col-md-2">
+                                    <img src={`https://joeschmoe.io/api/v1/${data.name}`} alt="" />
+                                </div>
+                                <div className="col col-md  align-items-center">
+                                    <div className="row">
+                                        <h3>{data.name}</h3>
+                                    </div>
+                                    <div className="row">
+                                        {data.comment}
+                                    </div>
 
-                            <Media body>
-                                <Media heading>
-                                    {data.name}
-                                </Media>
+                                </div>
 
-                                {data.comment}
-                            </Media>
-                        </Media>
+
+                            </div>
+                        </div>
                     )
                 }
             </Form>
