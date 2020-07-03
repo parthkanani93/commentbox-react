@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button, Form, Label, Input } from 'reactstrap';
 
 function CommentBox() {
@@ -105,7 +105,7 @@ function CommentBox() {
                     comments.map((data) =>{
 
                     console.log(data)
-                        return <div className="container mt-3" style={{ backgroundColor: "lightblue" }}>
+                        return <div className="container mt-3" style={{ backgroundColor: "lightblue" }} key={data.id}>
                             <div className="row d-flex justify-content-center">
                                 <div className="col col-md-2">
                                     <img src={`https://joeschmoe.io/api/v1/${data.name}`} alt="" />
