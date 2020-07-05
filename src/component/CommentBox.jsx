@@ -118,11 +118,11 @@ function CommentBox() {
                                         {data.comment}
                                     </div>
                                     <div>
-                                        <p onClick={()=>incrementLike(data.id)
-                                        }>like </p> : {data.like}
+                                        <i onClick={()=>incrementLike(data.id)
+                                        } class="fa fa-thumbs-o-up" aria-hidden="true"></i>: {data.like}
                                     </div>
                                     <div>
-                                       <p onClick={()=>incrementDislike(data.id)} >dislike</p>  : {data.dislike}
+                                      <i onClick={()=>incrementDislike(data.id)} class="fa fa-thumbs-o-down" aria-hidden="true"></i>: {data.dislike}
                                     </div>
 
                                 </div>
